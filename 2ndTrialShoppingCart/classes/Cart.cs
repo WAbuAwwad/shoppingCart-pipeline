@@ -13,6 +13,17 @@ namespace _2ndTrialShoppingCart
             return shcart;
         }
 
+        public ShoppingCart CalculateTaxes(ShoppingCart shcart)
+        {
+            double taxes = 0;
+            foreach (var item in shcart.Items)
+            {
+                taxes += item.Price * item.Taxe;
+            }
+            shcart.Taxes = taxes;
+            return shcart;
+        }
+
         public ShoppingCart CreateCart()
         {
             return new ShoppingCart();
