@@ -7,6 +7,13 @@ namespace _2ndTrialShoppingCart
 
    public class Cart : API
     {
+        public ShoppingCart AddDiscount(ShoppingCart shcart, discountType discount,double discountAmount)
+        {
+            shcart.Discounts.Add(discount);
+            shcart.Discount = discountAmount;
+            return shcart;
+        }
+
         public ShoppingCart AddItem(ShoppingCart shcart, CartItem item)
         {
             shcart.Items.Add(item);
@@ -27,14 +34,40 @@ namespace _2ndTrialShoppingCart
         public ShoppingCart CalculateTotal(ShoppingCart shcart)
         {
             double total = 0;
-            foreach (var item in shcart.Items)
+            if (shcart.Discounts.Count == 0)
             {
-                total += item.Price -(item.Price * item.Taxe);
+                foreach (var item in shcart.Items)
+                {
+                    total += item.Price + item.Price * item.Taxe;
+                }
+                shcart.Total = total;
             }
-            shcart.Total =total;
-            return shcart;
+            else
+            {
+                foreach (var Discount in shcart.Discounts)
+                {
+                    if (Discount == discountType.perCart)
+                    {
+                        foreach (var item in shcart.Items)
+                        {
+                            total += item.Price + (item.Price * item.Taxe);
+                        }
+                        shcart.Total =total-( total * shcart.Discount);
+                    }
+                    else
+                    {
+                        foreach (var item in shcart.Items)
+                        {
+                            total += item.Price - item.Price * item.Discount + item.Price * item.Taxe;
+                        }
+                        shcart.Total = total;
+                    }
+                }
+            }
+                return shcart;
+            
         }
-
+       
         public ShoppingCart CreateCart()
         {
             return new ShoppingCart();
