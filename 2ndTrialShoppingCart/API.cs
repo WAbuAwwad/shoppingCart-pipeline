@@ -11,6 +11,6 @@ namespace _2ndTrialShoppingCart
      ShoppingCart AddDiscount(ShoppingCart shcart, discountType discount, double discountAmount);
      ShoppingCart CalculateTaxes(ShoppingCart shcart);
      ShoppingCart CalculateTotal(ShoppingCart shcart);
-
+     ShoppingCart getTotalInDiffCurrency(ShoppingCart shcart , string currency);
     }
 }

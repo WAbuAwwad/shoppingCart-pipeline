@@ -30,7 +30,7 @@ namespace Test_2ndTrialShoppingCart
             var sut = cart.CreateCart();
             var item = new CartItem(1, 17.5, .03, 0);
             cart.AddItem(sut, item);
-            var expected =18.025;
+            var expected = 18.025;
             //Excercise system
             sut = cart.CalculateTotal(sut);
             var actual = sut.Total;
@@ -67,7 +67,7 @@ namespace Test_2ndTrialShoppingCart
             var item = new CartItem(1, 17.5, .03, 0);
             cart.AddItem(sut, item);
             cart.AddItem(sut, item);
-            cart.AddDiscount(sut,discountType.perCart, 0.25);
+            cart.AddDiscount(sut, discountType.perCart, 0.25);
             var expected = 27.0375;
             //Excercise system
             sut = cart.CalculateTotal(sut);
@@ -86,10 +86,30 @@ namespace Test_2ndTrialShoppingCart
             var item = new CartItem(1, 17.5, .03, 0.15);
             cart.AddItem(sut, item);
             cart.AddItem(sut, item);
-            cart.AddDiscount(sut, discountType.perItem , 0.25);
+            cart.AddDiscount(sut, discountType.perItem, 0.25);
             var expected = 30.8;
             //Excercise system
             sut = cart.CalculateTotal(sut);
+            var actual = sut.Total;
+            //Verify outcome
+            Assert.Equal(actual.ToString(), expected.ToString());
+            //Teardown
+        }
+
+
+        [Fact]
+        public void getTotalwithDiffCurrency_ShouldReturnCorrectResult()
+        {
+            //Fixture setup
+            var cart = new Cart();
+            var sut = cart.CreateCart();
+            var item = new CartItem(1, 17.5, .03, 0);
+            cart.AddItem(sut, item);
+            cart.AddItem(sut, item);
+            cart.AddItem(sut, item);
+            var expected = 81.1125;
+            //Excercise system
+            sut = cart.getTotalInDiffCurrency(sut, "Eur");
             var actual = sut.Total;
             //Verify outcome
             Assert.Equal(actual.ToString(), expected.ToString());

@@ -73,5 +73,20 @@ namespace _2ndTrialShoppingCart
             return new ShoppingCart();
         }
 
+        public ShoppingCart getTotalInDiffCurrency(ShoppingCart shcart, string currency)
+        {
+           shcart.Total= CalculateTotal(shcart).Total * ExchangeCurrency(currency);
+           return shcart;
+            
+        }
+        public double ExchangeCurrency(string currency)
+        {
+
+            if (currency.ToUpper() == "EUR") return 1.5;
+            else if (currency.ToUpper() == "NIS") return 3.5;
+            else if (currency.ToUpper() == "AUD") return 5.8;
+            else if (currency.ToUpper() == "SAR") return 2.7;
+            else return 1;
+        }
     }
 }
