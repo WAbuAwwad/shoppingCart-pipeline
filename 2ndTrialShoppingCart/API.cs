@@ -9,5 +9,6 @@ namespace _2ndTrialShoppingCart
      ShoppingCart CreateCart();
      ShoppingCart AddItem(ShoppingCart shcart ,CartItem item);
      ShoppingCart CalculateTaxes(ShoppingCart shcart);
+     ShoppingCart CalculateTotal(ShoppingCart shcart);
     }
 }
