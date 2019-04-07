@@ -27,5 +27,10 @@ namespace _2ndTrialShoppingCart
             total = 0;
             discountAmount = 0;
         }
+
+        public ShoppingCart CreateCart()
+        {
+            return new ShoppingCart();
+        }
     }
 }
